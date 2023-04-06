@@ -1,40 +1,48 @@
 package model;
 
 import model.CalendrierAnnuel; // ???
-import model.FormulaireRestaurant;
+import model.Formulaire;
 
-public class EntiteReservable {
+public abstract class EntiteReservable <F extends Formulaire>{
 	private CalendrierAnnuel calendrierPersonnel;
-	private int identification;
+	private int numero;
 
-	
-	
-	public int getIdentification() {
-		return identification;
-	}
-
-	public void setIdentification(int identification) {
-		this.identification = identification;
+	public EntiteReservable(CalendrierAnnuel calendrierPersonnel, int numero) {
+		this.calendrierPersonnel = calendrierPersonnel;
+		this.numero = numero;
 	}
 	
-	public boolean estLibre(FormulaireRestaurant formRestau) {
-		if (calendrierPersonnel.estLibre(formRestau.getJour(), formRestau.getMois())) {
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	
+	public boolean estLibre(F formulaire) {
+		if (calendrierPersonnel.estLibre(formulaire.getJour(), formulaire.getMois())) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean compatible(FormulaireRestaurant formRestau) {
-		if (calendrierPersonnel.reserver(formRestau.getJour(), formRestau.getMois())) {
+/*	public boolean compatible(F formulaire) {
+		if (calendrierPersonnel.reserver(formulaire.getJour(), formulaire.getMois())) {
 			return true;
 		}
 		return false;
 	}
 	
-	public Reservation reserver(FormulaireRestaurant formRestau) {
-		if (!compatible(formRestau)) {
-			return new ReservationRestaurant(formRestau.getJour(), formRestau.getMois(), formRestau.getNumService(), formRestau.getNombrePersonnes());
+	public Reservation reserver(F formulaire) {
+		if (!compatible(formulaire)) {
+			return new ReservationRestaurant(formulaire.getJour(), formulaire.getMois(), formulaire.getNumService(), formulaire.getNbPersonnes());
 		}
 		return null;
 	}
+	*/
+	
+	public abstract boolean compatible(F formulaire);
+	
+	public abstract Reservation reserver(F formulaire);
 }

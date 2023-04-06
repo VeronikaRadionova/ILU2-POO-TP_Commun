@@ -1,19 +1,33 @@
 package model;
 
-public class FormulaireRestaurant extends ReservationRestaurant {
+public class FormulaireRestaurant extends Formulaire {
 	
-	private int identificationEntite; // ???
+	private int entite; // ???
+	private int nbPersonnes;
+	private int numService;
 	
 	public FormulaireRestaurant (int jour, int mois, int nbPersonnes, int numService) {
-		super(jour, mois, numService, nbPersonnes);
+		super(jour, mois);
+		this.entite = entite;
+		this.nbPersonnes = nbPersonnes;
+		this.numService = numService;
+		
 	}
 
-	public int getIdentificationEntite() {
-		return identificationEntite;
+	public int getEntite() {
+		return entite;
 	}
 
-	public void setIdentificationEntite(int identificationEntite) {
-		this.identificationEntite = identificationEntite;
+	public void setEntite(int identificationEntite) {
+		this.entite = identificationEntite;
+	}
+
+	public int getNbPersonnes() {
+		return nbPersonnes;
+	}
+
+	public int getNumService() {
+		return numService;
 	}
 
 	
